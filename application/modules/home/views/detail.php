@@ -39,7 +39,7 @@
                     <div class="clearAll"></div>
 				</div>
 				<?php }?>
-				<?php if($this->uri->segment(4)=='mercer-and-talentnet-total-remuneration-survey-trs-2015-steadily-rising--MonEuy2wnh'){ ?>
+				<?php if($this->uri->segment(4)=='mercer-and-talentnet-total-remuneration-survey-trs-2015-steadily-rising--MonEuy2wnh___________'){ ?>
 				<div class="">
 					<p style="margin-bottom: 15px;">Click the button below to download the general data of Salary Survey 2015 by Mercer & Talentnet</p>
 					<a href="#ab-brochure-popup" class="btn_download" data-id="en">English Version</a>
@@ -176,6 +176,7 @@
 </div>
 <script type="text/javascript">
 var lang_click="";
+var link_down="";
 $(document).ready(function(){
 	$('#box_catpcha #btRefresh').bind('click',function(){
 		rq= '?'+ new Date().getTime();;
@@ -183,6 +184,7 @@ $(document).ready(function(){
 	});	
 	$('.btn_download').click(function(){
 		lang_click=$(this).data('id');
+		link_down=$(this).attr('rel');
 	});
     $('.btn_download').fancybox();    
     $('#form_brochure_info .btn-carrer').bind('click',function(){
@@ -192,6 +194,7 @@ $(document).ready(function(){
             $(this).addClass('disabled');
             el_status.html('');
             var info={
+				action:"Download file",
                 token:token,
                 fullname: $('#form_brochure_info input[name="fullname"]').val(),
                 title : $('#form_brochure_info input[name="title"]').val(),
@@ -214,16 +217,22 @@ $(document).ready(function(){
                     $.fancybox.close();
      				// $('#ab-brochure-popup-click').trigger('click');
 					// $('#btRefresh').trigger('click');
+					/*
 					if(lang_click=="en"){
 						window.location = '<?=base_url()?>assets/Mercer and Talentnet Salary Survey 2015.pdf';
 					}else{
 						window.location = '<?=base_url()?>assets/Ket Qua Khao Sat Luong Mercer va Talentnet 2015.pdf';
 					}
-
+					*/
+					if(link_down.indexOf("http") != 0) {
+						link_down = '<?=base_url()?>' + link_down;
+					}
+					window.location = link_down;
                     setTimeout(function(){
                     	window.location.href = '<?=PATH_URL_LANG?>' + 'thank-you';
                     }, 200);
                     
+					
                 }
 
 				$this.removeClass('disabled');
@@ -235,7 +244,7 @@ $(document).ready(function(){
 </script>
 <style>
 .btn_download{ 
-	color: white;
+	color: white !important;
 	background-color: #A84216;
 	padding: 10px 20px;
 	border-radius: 4px;

@@ -130,6 +130,9 @@
 										<th class="center">
 											<a href="">Email</a>
 										</th>
+										<th class="center">
+											<a href="">Action</a>
+										</th>
 										<!--<th class="center">
 											<a href="">Image</a>
 										</th>-->
@@ -163,6 +166,7 @@
 										<td class="center vl-m" data-field=""><?=$row->company?></td>
 										<td class="center vl-m" data-field=""><?=$row->phone?></td>
 										<td class="center vl-m" data-field=""><?=$row->email?></td>
+										<td class="center vl-m" data-field=""><?=$row->action?></td>
 										<!--<td class="center vl-m" data-field=""><?=$row->name_category?></td>
 										<td class="center vl-m" data-field=""><a href="<?=!empty($row->link_detail)?$row->link_detail:''?>" target="_blank">LINK</a></td>
 										<!--<td class="center vl-m" data-field="status"><span class="label"><?=getStatus($row->status)?></span></td>-->

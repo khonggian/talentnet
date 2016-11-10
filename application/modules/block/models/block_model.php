@@ -29,12 +29,14 @@ class Block_model extends MY_Model {
         }
     }
     function insert_who_download_brochure(){
+		$action = filter_input_xss($this->input->post('action'));
         $fullname = filter_input_xss($this->input->post('fullname'));
         $company = filter_input_xss($this->input->post('company'));
         $title = filter_input_xss($this->input->post('title'));
         $phone = filter_input_xss($this->input->post('phone'));
         $email = filter_input_xss($this->input->post('email'));
         $this->db->insert(DOWNLOAD_BROCHURE_TB, array(
+			'action'	=> $action,
             'fullname' => $fullname,
             'company'  => $company,
             'title'    => $title,

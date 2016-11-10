@@ -181,7 +181,7 @@ class CI_Admin {
 	{
 		if(!empty($user))
 		{
-			session_start();
+			//session_start();
 			$this->CI->session->set_userdata('admin_uid', $user->id);
 			$this->CI->session->set_userdata('admin_username', $user->username);
 			$this->CI->session->set_userdata('admin_email', $user->email);

@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'sgnpldb-v09-common.talentnet.vn';
-$db['default']['username'] = 'www';
-$db['default']['password'] = 'www@123';
-$db['default']['database'] = 'www';
+$db['default']['hostname'] = '125.212.217.55';
+$db['default']['username'] = 'cuahd_utal';
+$db['default']['password'] = 'AM1aZ84fq';
+$db['default']['database'] = 'cuahd_dtal';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

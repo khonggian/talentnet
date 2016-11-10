@@ -97,6 +97,7 @@ $(document).ready(function(){
             $(this).addClass('disabled');
             el_status.html('');
             var info={
+				action:"Download brochure",
                 token:token,
                 fullname: $('#form_brochure_info input[name="fullname"]').val(),
                 title : $('#form_brochure_info input[name="title"]').val(),

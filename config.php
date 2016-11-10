@@ -1,10 +1,17 @@
 <?php
 define('NOW', date('Y-m-d H:i:s'));
 define('ENCRYPTION_KEY', md5('DMqWX4Nn3CWtJwQ864LhY')); //https://www.random.org/passwords/?num=1&len=21&format=html&rnd=new
+/*
 define('PREFIX', 'wz_');	
 define('DB_USER', 'www');
 define('DB_PASS', 'www@123');
 define('DB_NAME', 'www');
+define('SITE_REFIX', 'adminwz');
+*/
+define('PREFIX', 'wz_');	
+define('DB_USER', 'cuahd_utal');
+define('DB_PASS', 'AM1aZ84fq');
+define('DB_NAME', 'cuahd_dtal');
 define('SITE_REFIX', 'adminwz');
 
 /* FACEBOOK APPS */
