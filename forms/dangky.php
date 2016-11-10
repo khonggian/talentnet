@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Talentnet Corporation</title>
+
+<style type="text/css">
+*{margin0; padding:0}
+
+body{
+	font-family:'Cambria', Times, serif; 
+	font-size:13pt; 
+	color:#000
+}
+
+input{ 
+	height:36px;
+	font-family:'Cambria', Times, serif;
+	font-size:12pt; 
+	padding:2px;
+	border:1px solid #CCCCCC;
+}
+
+input:hover{ border:1px solid green}
+
+input:focus{ border:1px solid green}
+
+textarea{
+	width:596px;
+	height:200px;
+	font-family:'Cambria', Times, serif;
+	font-size:12pt;
+	padding:2px;
+	border:1px solid #CCCCCC;
+}
+
+textarea:hover{ border:1px solid green}
+
+textarea:focus{ border:1px solid green}
+
+.button{
+	background-color:#AF6127;
+	color:#FFF;
+	border: 1px solid #AF6127;
+	padding: 2px 24px;
+	font-size:10pt;
+	box-shadow:inset 0px 0px 0px rgba(0,0,0,0.5);
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+}
+
+.button:hover{
+	background-color:#8C4E1F;
+	color:#FFF;
+	border: 1px solid #FFF;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+}
+
+.green {color:green}
+
+.red{color:#F00}
+
+.ita{font-style:italic; font-size:10pt;}
+
+.bottom{
+	background-image:url(http://i1281.photobucket.com/albums/a512/vuonghieu49/Invitation%20092015/bg_bottom_zps7tykfztj.png);
+	width:650px;
+	height:424px;
+	font-size:12pt;
+	color:#333;
+	font-style:italic;
+	padding:0 0 0 50px;
+	line-height:1.5;
+}
+
+</style>
+
+</head>
+<?php		
+			//Server profile
+			$servername = "sgnpldb-v09-common.talentnet.vn";
+			$username = "mkt";
+			$password = "m@rKETing*2015";
+
+			
+			$bAvalable = true;
+			$AvalableMsg = "Để đăng ký, vui lòng điền các thông tin bên dưới:";
+			
+			$Fullname_Msg = "";
+			$CompanyName_Msg = "";
+			$Email_Msg = "";
+			$Phone_Msg = "";	
+			$Bottom_Msg = "";
+			$isSuccess = false;
+			$Success_Msg = "";
+			
+			
+				
+			// Create connection
+			$link = mysqli_connect($servername, $username, $password,"mkt");
+			
+			if(!$link) {
+				echo "Error: Unable to connect to MySQL." . PHP_EOL."<br />";
+				echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL."<br />";
+				echo "Debugging error: " . mysqli_connect_error() . PHP_EOL."<br />";
+				exit;
+			}
+			
+			//mysql_query("SET character_set_results=utf8", $link);
+			//mb_language('uni');
+			//mb_internal_encoding('UTF-8');
+			//mysql_select_db($servername, $link);
+			//mysql_query("set names utf8");
+			
+			//Get Max allow registration
+			$sql = "Select Value From Param a Where a.Key=N'MaxRegistration'";
+			$result = mysqli_query($link, $sql);
+			
+			if(!$result)
+			{
+				echo "Cannot connect parameter."; 
+				exit;
+			}
+			$row = $result->fetch_assoc();
+			$maxReg = $row["Value"];
+			
+			
+			//Get current total records
+			$sql = "Select count(*) as total From Registration";
+			$result = mysqli_query($link, $sql);
+			if(!$result)
+			{
+				echo "Cannot connect database."; 
+				exit;
+			}
+			$row = $result->fetch_assoc();
+			$curTotalRec = $row["total"];			
+			
+			if($curTotalRec >= $maxReg)
+			{
+				$bAvalable = false;
+				$AvalableMsg = "Hiện tại số lượng đăng ký đã đủ, mong Quý vị thông cảm.";					
+			}									
+			
+			if(isset($_POST['Fullname']) and $bAvalable)
+			{							
+				//Validate
+				$hasErr = false;
+				if(trim($_POST['Fullname']) == "")
+				{
+					$Fullname_Msg = "Vui lòng nhập Họ và Tên.<br/>";
+					$hasErr = true;	
+				}				
+				
+				if(trim($_POST['CompanyName']) == "")
+				{
+					$CompanyName_Msg = "Vui lòng nhập Tên công ty.<br/>";
+					$hasErr = true;
+				}				
+				
+				if(trim($_POST['Email']) == "")
+				{
+					$Email_Msg = "Vui lòng nhập Email.<br/>";
+					$hasErr = true;
+				}
+				else if (!filter_var(trim($_POST['Email']), FILTER_VALIDATE_EMAIL) == true) 
+				{
+					$Email_Msg = "Vui lòng nhập đúng Email của Quý vị.<br/>";
+					$hasErr = true;
+				}		
+				
+				if(trim($_POST['Phone']) == "")
+				{
+					$Phone_Msg = "Vui lòng nhập Số điện thoại.<br/>";
+					$hasErr = true;
+				}
+				else if(!preg_match('/^[0-9 .-]+$/', $_POST['Phone'])) 
+				{
+					$Phone_Msg = "Vui lòng nhập đúng Số điện thoại.<br/>";
+					$hasErr = true;
+				}		
+			
+				if(!$hasErr)
+				{	
+					//Get data input			
+					$Fullname = trim($_POST['Fullname']);
+					$CompanyName = trim($_POST['CompanyName']);
+					$Title = trim($_POST['Title']);
+					$Email = trim($_POST['Email']);
+					$Phone = trim($_POST['Phone']);
+					$Subject = trim($_POST['Subject']);
+					$Question = trim($_POST['Question']);	
+					
+					//Check if exist Email records
+					$sql = "Select Fullname From Registration Where Email='".$Email."'";
+					$result = mysqli_query($link, $sql);
+					
+					if($result->num_rows > 0) //Registered
+					{
+						$Bottom_Msg = "Email của Quý vị đã được đăng ký rồi.";
+					}
+					else
+					{
+						//Check if in Email list
+						$sql = "Select Email From EmailList Where Email='".$Email."'";
+						$result = mysqli_query($link, $sql);
+						
+						if($result->num_rows == 0) //Email not in Email list
+						{
+							//Insert to Database							
+							mysqli_set_charset($link,"utf8");
+							$sql = "INSERT INTO Registration ".
+							   "(CompanyName, Email, Fullname, Note, Phone, Question, Title, Subject) ".
+							   "VALUES ".
+							   "('".$CompanyName."', '".$Email."', '".$Fullname."', 'Waiting', '".$Phone."', '".$Question."', '".$Title."', '".$Subject."')";
+
+							$result = mysqli_query($link, $sql);
+							if($result)
+							{
+								$isSuccess = true;
+								$Success_Msg = "Cảm ơn Quý vị đã đăng ký tham dự Hội thảo.<br />Thư xác nhận sẽ được gửi đến email Quý vị<br />trong vòng 05 ngày kể từ khi đăng ký.";
+								
+							}
+							else
+							{
+								$Bottom_Msg = "Hệ thống đang quá tải. Quý vị vui lòng quay lại sau.";
+							}
+						
+							mysqli_close($link);
+						}
+						else //Email in Email list
+						{
+							//Insert to Database							
+							mysqli_set_charset($link,"utf8");
+							$sql = "INSERT INTO Registration ".
+							   "(CompanyName, Email, Fullname, Note, Phone, Question, Title, Subject) ".
+							   "VALUES ".
+							   "('".$CompanyName."', '".$Email."', '".$Fullname."', 'Invitee', '".$Phone."', '".$Question."', '".$Title."', '".$Subject."')";
+
+							$result = mysqli_query($link, $sql);
+							if($result)
+							{
+								$isSuccess = true;
+								$Success_Msg = "Cảm ơn Quý vị đã đăng ký tham dự Hội thảo.<br />Thư xác nhận sẽ được gửi đến email Quý vị<br />trong vòng 05 ngày kể từ khi đăng ký.";								
+							}
+							else
+							{
+								$Bottom_Msg = "Hệ thống đang quá tải. Quý vị vui lòng quay lại sau.";
+							}
+						
+							mysqli_close($link);
+							
+							//Send Email
+							/*
+							$msg = "Rất cảm ơn sự quan tâm và đăng ký tham dự của Anh/ Chị cho \"HỘI THẢO VỀ THUẾ THU NHẬP CÁ NHÂN VÀ LAO ĐỘNG - TIỀN LƯƠNG\"\n
+
+							Chúng tôi xác nhận đăng ký tham dự hội thảo thành công với các thông tin bên dưới:\n\n
+
+							Họ & Tên: ".$Fullname."\n
+							Công ty: ".$CompanyName."\n
+							Email: ".$Email."\n
+							Số điện thoại: ".$Phone."\n\n
+
+							Thông tin Hội Thảo:\n
+							Thời gian: 13:00 - 17:00, Thứ 6, ngày 18/09/2015\n
+							Địa điểm: GEM CENTER - 8 Nguyễn Bỉnh Khiêm, Phường Đa Kao, Quận 1, TP.HCM\n\n
+
+							Hẹn gặp lại Anh/ Chị tại hội thảo.\n\n
+
+							Trân trọng,\n\n
+
+							Talentnet Corporation
+							";
+							
+							$msg = "Thank you";
+
+							// use wordwrap() if lines are longer than 70 characters
+							$msg = wordwrap($msg,70);
+
+							// send email
+							mail($Email, "Talentnet Corporation", $msg);
+							mail("vo.tuan.bao@talentnet.vn", "Talentnet Corporation", $msg);
+							*/
+						}						
+					}							
+				}
+			}			  
+		?> 
+<body bgcolor="#CCCCCC">
+<div style="width:700px; margin:0 auto">
+<table width="700" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td><img src="http://i1281.photobucket.com/albums/a512/vuonghieu49/Invitation%20092015/invitation-talentnet_zpsi2rqhwz6.png" width="700" /></th>
+</tr>
+<tr height="24"><td></td></tr>
+<tr>
+<td>
+	
+    <table width="700" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="50">&nbsp;</td>
+        <td width="600">
+            <div align="center" style="font-family:'Cambria', Times, serif; font-size:21pt;">
+            	<strong>HỘI THẢO VỀ THUẾ THU NHẬP CÁ NHÂN
+            <br />VÀ LAO ĐỘNG - TIỀN LƯƠNG</strong></div>
+            <br />
+            <div align="center" style="font-family:'Cambria', Times, serif; font-size:13pt;">
+            	Cảm ơn Quý vị đã quan tâm đến "Hội thảo về Thuế Thu nhập cá nhân <br />và Lao động - Tiền lương". <br />	
+				<span style="color:green"><?php echo $AvalableMsg?></span>		
+			</div>
+            <br />
+            <form action="dangky.php#Fullname" method="Post" name="RegisterForm" accept-charset="UTF-8">
+            	<table width="600" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Họ và tên: <span class="red">*</span></td>
+                    <td width="450"><input placeholder="Họ và tên" name="Fullname" id="Fullname" type="text" size="40" value="<?php if(isset($_POST['Fullname'])) echo htmlspecialchars($_POST['Fullname']); ?>" /></td>
+                  </tr>
+                  <tr>
+                    <td width="120">&nbsp;</td>
+                    <td width="450"><span class="red ita" name="Fullname_Msg"><?php echo $Fullname_Msg?></span></td>
+                  </tr>
+                   <tr>
+                    <td width="150">Công ty: <span class="red">*</span></td>
+                    <td width="450"><input placeholder="Tên công ty" name="CompanyName" type="text" size="40" value="<?php if(isset($_POST['CompanyName'])) echo htmlspecialchars($_POST['CompanyName']); ?>" /></td>
+                  </tr>
+                  <tr>
+                    <td width="120">&nbsp;</td>
+                    <td width="450"><span class="red ita" name="CompanyName_Msg"><?php echo $CompanyName_Msg?></span></td>
+                  </tr>
+                   <tr>
+                    <td width="150">Chức vụ:</td>
+                    <td width="450"><input placeholder="Chức vụ" name="Title" type="text" size="40" value="<?php if(isset($_POST['Title'])) echo htmlspecialchars($_POST['Title']); ?>" /></td>
+                  </tr>
+                  <tr>
+                    <td width="120">&nbsp;</td>
+                    <td width="450"><span class="red ita" name="Title_Msg"></span></td>
+                  </tr>
+                   <tr>
+                    <td width="150">Email: <span class="red">*</span></td>
+                    <td width="450"><input placeholder="Email" name="Email" type="text" size="40" value="<?php if(isset($_POST['Email'])) echo htmlspecialchars($_POST['Email']); ?>" /></td>
+                  </tr>
+                  <tr>
+                    <td width="120">&nbsp;</td>
+                    <td width="450"><span class="red ita" name="Email_Msg"><?php echo $Email_Msg?></span></td>
+                  </tr>
+                   <tr>
+                    <td width="150">Điện thoại: <span class="red">*</span></td>
+                    <td width="450"><input placeholder="Số điện thoại" name="Phone" id="Phone" maxlength="15" type="text" size="40" value="<?php if(isset($_POST['Phone'])) echo htmlspecialchars($_POST['Phone']); ?>" /></td>
+                  </tr>
+                  <tr>
+                    <td width="120">&nbsp;</td>
+                    <td width="450"><span class="red ita" name="Phone_Msg"><?php echo $Phone_Msg?></span></td>
+                  </tr>
+                   <tr>
+                    <td width="600" colspan="2">Câu hỏi dành cho diễn giả (nếu có):</td>
+                  </tr>
+                  <tr height="12">
+                    <td width="120"></td>
+                    <td width="450"></td>
+                  </tr>
+				  <tr>
+					<td width="150">Chủ đề câu hỏi: </td>
+                    <td width="450">
+						<select name="Subject">
+							<option></option>
+							<option <?php if(isset($_POST['Subject']) and $_POST['Subject'] == "Thuế Thu nhập cá nhân") echo "selected" ?>>Thuế Thu nhập cá nhân</option>
+							<option <?php if(isset($_POST['Subject']) and $_POST['Subject'] == "Lao động - Tiền lương") echo "selected" ?>>Lao động - Tiền lương</option>
+							<option <?php if(isset($_POST['Subject']) and $_POST['Subject'] == "Khác") echo "selected" ?>>Khác</option>
+						</select>
+					</td>                    
+                  </tr>
+				  <tr height="12">
+                    <td width="120"></td>
+                    <td width="450"></td>
+                  </tr>
+                  <tr>
+                    <td width="600" colspan="2">
+                    <textarea name="Question" cols="" rows="" placeholder="Đặt câu hỏi"><?php if(isset($_POST['Question'])) echo htmlspecialchars($_POST['Question']); ?></textarea>
+                    </td>
+                  </tr>
+                  <tr height="6">
+                    <td width="120"></td>
+                    <td width="450"></td>
+                  </tr>				  
+                  <tr>
+                    <td>
+						<input class="button" type="submit" name="Register" id="Register" value="ĐĂNG KÝ" />						
+					</td>
+					<td>
+						<span class="red ita" name="Bottom_Msg"><?php echo $Bottom_Msg?></span>
+						<span class="green" name="Success_Msg"><?php echo $Success_Msg?></span>
+					</td>
+                  </tr>
+				  
+                </table>
+
+            </form>
+        </td>
+        <td width="50">&nbsp;</td>
+    </tr>
+    </table>
+</td>
+</tr>
+
+<tr>
+<td><br /><div class="bottom">
+<div>
+<span style="font-style:normal">Mọi thắc mắc, xin vui lòng liên hệ:
+<br />(Ms.) Lâm Thị Kim Anh
+<br />Email: <a style="color:#00F" href="mailto:lam.kim.anh@talentnet.vn">lam.kim.anh@talentnet.vn</a>
+<br />Tel: (84 8) 6 291 4188 - Ext: 348</span>
+</div>
+</div></td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+

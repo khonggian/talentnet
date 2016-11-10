@@ -1,0 +1,49 @@
+.clearAll{clear:both;}
+.block-comment .comment-form {
+	min-height: 69px;padding:7px;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	background: #F2F2F2;
+}
+
+.block-comment .comment-form .td-left{width: 3%;}
+.block-comment .comment-form .td-right{width: 100%;}
+
+.block-comment .comment-form  .avatar{width: 60px;}
+.block-comment .comment-form  .text{width: 100%;}
+.block-comment .comment-form  .text textarea{
+	background-color: none;
+	border-width: 0px;
+	box-shadow: 0;
+	margin: 0;
+	padding: 0;
+	height: 31px;
+	resize: none;
+	width: 100%;
+}
+
+.block-comment .comment-form  .text .text-comment{padding:4px;background: #FFFFFF;}
+.block-comment .comment-form  .text .text-button{padding:1px 4px;}
+
+.block-comment .comment-form .btnCommentSend.main{
+	float:right;
+	margin:3px -4px 0 0;
+	cursor:pointer;
+	background:#5973A8;
+	border-width:0;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 2px 6px;
+}
+.block-comment .comment-list{padding: 5px 0;}
+.block-comment .comment-list .comment-item .avatar{float:left;width: 60px;}
+.block-comment .comment-list .comment-item .comment-detail{float:left;width:95%;}
+.block-comment .comment-list .comment-item .fullname{float:left;}
+.block-comment .comment-list .comment-item .time{float:right;}
+.block-comment .comment-list .comment-item .comment-reply{padding:10px 0 0 55px;}
+.block-comment .comment-loadmore{text-align:center;}
+
+
+.fb_iframe_widget,
+.fb_iframe_widget span,
+.fb_iframe_widget iframe[style]  {width: 100% !important;}

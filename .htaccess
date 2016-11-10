@@ -1,0 +1,27 @@
+php_value short_open_tag 1
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
+AddType text/x-component .htc
+SetEnvIfNoCase Request_URI \.(ogv|mp4|webm)$ no-gzip dont-vary
+
+RewriteEngine On
+<FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|js|css)$">
+	Header set Cache-Control "max-age=864000"
+</FilesMatch>
+#Gzip
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+</ifmodule>
+#End Gzip
+
+<IfModule mod_php5.c>
+php_value memory_limit 512M
+</IfModule>
+
+RewriteCond %{HTTP_HOST}!^(www\.¦$) [NC]
+RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]

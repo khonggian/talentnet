@@ -1,0 +1,1 @@
+ALTER TABLE `wz_admin_module` ADD `type` VARCHAR( 32 ) NULL DEFAULT 'module' AFTER `pid` ;

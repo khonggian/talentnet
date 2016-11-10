@@ -1,0 +1,1 @@
+[{"name":"id","value":"736a1351-ae6e-f2c1-bbb3-555d8e6241ec"},{"name":"parent_id","value":"6649c7bf-0006-079c-2744-555d8b4a6e99"},{"name":"name","value":"s\u00e2fgsd"},{"name":"skill_language","value":"Vi\u1ec7t Nam"},{"name":"skill_level","value":"Advanced"},{"name":"deleted","value":1}]

@@ -1,0 +1,1 @@
+<img src="<?=$embed?>" class="fancybox-image" alt="" />

@@ -1,0 +1,18 @@
+body{
+	width: 100%;
+}
+
+#imgprev{
+	display: block;
+	width: 100%;
+	position: relative;
+	top: auto;
+	left: auto;
+}
+
+#imgprev img{
+	max-width: 100%;
+}
+.mb-share-tt,.share-bar,.container{
+	display: none;
+}

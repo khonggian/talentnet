@@ -1,0 +1,1 @@
+[{"name":"id","value":"dc87647c-3e2b-7c72-4810-555d8d4d18a8"},{"name":"name","value":"sgsdgsdg"},{"name":"parent_id","value":"6649c7bf-0006-079c-2744-555d8b4a6e99"},{"name":"training_company","value":"sdg sdgsd"},{"name":"time_duration","value":"gsdgsdg"},{"name":"deleted","value":1}]

@@ -1,0 +1,1 @@
+ALTER TABLE  `wz_jobs` ADD  `views` INT( 11 ) NOT NULL DEFAULT  '0' AFTER  `hot`
