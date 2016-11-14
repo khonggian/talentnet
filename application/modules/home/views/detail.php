@@ -185,16 +185,20 @@ $(document).ready(function(){
 	$('.btn_download').click(function(){
 		lang_click=$(this).data('id');
 		link_down=$(this).attr('rel');
+		$('#btRefresh').trigger('click');
 	});
     $('.btn_download').fancybox();    
     $('#form_brochure_info .btn-carrer').bind('click',function(){
+		if(link_down != "" && link_down.indexOf("http") != 0) {
+			link_down = '<?=base_url()?>' + link_down;
+		}
         var el_status = $('#form_brochure_info .ab-submit-status'); 
 		var $this= $(this);
         if(!$(this).hasClass('disabled')){
             $(this).addClass('disabled');
             el_status.html('');
             var info={
-				action:"Download file",
+				action: link_down,
                 token:token,
                 fullname: $('#form_brochure_info input[name="fullname"]').val(),
                 title : $('#form_brochure_info input[name="title"]').val(),
@@ -224,9 +228,6 @@ $(document).ready(function(){
 						window.location = '<?=base_url()?>assets/Ket Qua Khao Sat Luong Mercer va Talentnet 2015.pdf';
 					}
 					*/
-					if(link_down.indexOf("http") != 0) {
-						link_down = '<?=base_url()?>' + link_down;
-					}
 					window.location = link_down;
                     setTimeout(function(){
                     	window.location.href = '<?=PATH_URL_LANG?>' + 'thank-you';
