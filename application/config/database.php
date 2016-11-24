@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '125.212.217.55';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'cuahd_utal';
 $db['default']['password'] = 'AM1aZ84fq';
 $db['default']['database'] = 'cuahd_dtal';

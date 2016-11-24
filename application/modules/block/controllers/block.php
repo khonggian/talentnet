@@ -129,18 +129,21 @@ class Block extends MX_Controller {
         $this->block_model->validate_ext($arr_error,$error,'email',lang('Please_enter').' '.'email');
         $this->block_model->validate_email($arr_error,$error,'email',lang('form_invalid').' '.'email address');
 		$this->block_model->validate_captcha($arr_error,$error);
+		$this->block_model->validate_ext($arr_error, $error, 'how_know', lang('form_validate_null') .' '.lang('how_know'));		
+		$this->block_model->validate_ext($arr_error, $error, 'chkLooking', lang('form_validate_null') .' '.lang('choise_service_offerings'));
 		
         if(empty($error)){
 			$this->block_model->insert_who_download_brochure();
 		}
-        
+        $setting = $this->block_model->get('brochure_download', ADMIN_SETTING_TB ,"`id` = 1");
 		$json= array(
-            'link_download' => PATH_URL_LANG.'download',
+            //'link_download' => PATH_URL_LANG.'download',
+            'link_download' => $setting->brochure_download,
 			'st'		=> (empty($error))?'SUCCESS':'FALSE',
 			'error'		=> $arr_error,
 			'txt'		=> $txt
 		);
-        echo json_encode($json);		
+        echo json_encode($json);
     }
     function ajax_download(){
         $error= false;$arr_error= array();$txt= '';

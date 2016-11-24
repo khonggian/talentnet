@@ -257,7 +257,6 @@ function Page(){
 		})
 		
 		$(window).scroll(function(){
-			console.log(111);
 			var h_top = $(window).scrollTop();
 			if (h_top < 230){
 				$('.no-top').show();
@@ -635,6 +634,7 @@ function Page(){
 		});
         $('#popup_tk').fancybox();
 		$('.btnSend').click(function(){
+			
 			$('.loading').show();
 			$div_error= $('#div_error');
 			var $form= $('#frContact');
@@ -642,6 +642,36 @@ function Page(){
 			var data = {
 				token 	: token,
 			};
+			
+			var chkLooking = "[";
+			var stop = false;
+			$('input[name*="chkLooking"]').each(function(index){
+				if($(this).is(':checked')) {
+					if(parseInt(index) == 5) {
+						if($.trim($("#choise_others_text").val()) == "") {
+							DisplayMessage(choise_others_empty, $("#choise_others_text"));
+							stop = true;
+						} else {
+							chkLooking = chkLooking + "," + $.trim($("#choise_others_text").val());
+						}
+					} else {
+						chkLooking = chkLooking + "," + $(this).val();
+					}
+					
+				}
+					
+			});
+			chkLooking = chkLooking.replace("[,", "").replace("[", "");
+			if(chkLooking == "") {
+				DisplayMessage(choise_service_offerings, $("#chkLookingDiv"));
+				stop = true;
+			} else {
+				data["chkLooking"] = chkLooking;
+			}
+			if(stop == true) {
+				return;
+			}
+
 			var post_data = $form.serialize() + '&' + $.param(data);
             //console.log(post_data);
 			$.post(
@@ -670,6 +700,15 @@ function Page(){
 			
 		});				
 	};
+	
+	function DisplayMessage(message, elem) {
+		$('.loading').hide();
+		var $div_error= $('#div_error');
+		$div_error.removeClass('frSuccess');
+		$div_error.addClass('frError');
+		$div_error.html(message);
+		elem.focus();
+	}
 	
     this.showResponse = function(data, $form){
 		var $div_error= $('#div_error');

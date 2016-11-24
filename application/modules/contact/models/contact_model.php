@@ -17,6 +17,8 @@ class Contact_model extends MY_Model {
 			'email'			=> filter_input_xss($this->input->post('email'), true),
             'state'		    => $this->input->post('state'),
 			'message'		=> filter_input_xss($this->input->post('content'), true),
+			'howknow'		=> filter_input_xss($this->input->post('how_know'), true),
+			'serviceoffer'		=> filter_input_xss($this->input->post('chkLooking'), true),
 			'changed'		=> NOW,
 			'created'		=> NOW
 		);

@@ -84,7 +84,48 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
+						<div class="form-group">
+							<div class="lable" style="line-height: 18px;"><?=lang('how_know')?> <span> *</span></div>
+							<div class="input">
+								<input type="text" class="field_state" name="how_know" placeholder="<?=lang('how_know')?>" value=""/>
+							</div>
+							<div class="clearfix"></div>
+						</div>
 						
+						<div class="form-group" id="chkLookingDiv">
+							<div class="lable" style="line-height: 18px;"><?=lang('looking_for')?> <span> *</span></div>
+							<div style="margin-left: 115px;">
+								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('executive_search')?>"/>
+								<span><?=lang('executive_search')?></span>
+								<div class="clearfix_slim"></div>
+							
+								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_consulting')?>"/>
+								<span><?=lang('hr_consulting')?></span>
+								<div class="clearfix_slim"></div>
+								
+								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('mercer_salary_surveys')?>"/>
+								<span><?=lang('mercer_salary_surveys')?></span>
+								<div class="clearfix_slim"></div>
+								
+								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('payroll_outsourcing')?>"/>
+								<span><?=lang('payroll_outsourcing')?></span>
+								<div class="clearfix_slim"></div>
+								
+								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_services_market')?>"/>
+								<span><?=lang('hr_services_market')?></span>
+								<div class="clearfix_slim"></div>
+								
+								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('choise_others')?>"/>
+								<span><?=lang('choise_others')?></span>
+								<div style="padding-top:5px;" class="clearfix"></div>
+								<div class="input">
+									<input type="text" class="field_state" name="choise_others_text" id="choise_others_text" placeholder="<?=lang('choise_others')?>"/>
+								</div>
+								
+							</div>
+							<div class="clearfix"></div>
+						</div>
+		
 						<div class="form-group">
 							<div class="lable"><?=lang('your_request')?> <span> *</span></div>
 							<div class="area">
@@ -110,6 +151,8 @@
 	</div>
 </div>
 <script type="text/javascript">
+	var choise_others_empty = "<?=lang('choise_others_empty')?>";
+	var choise_service_offerings = "<?=lang('choise_service_offerings')?>";
 	$(document).ready(function(){
 		Page.contact();
 		$(".popup_map")

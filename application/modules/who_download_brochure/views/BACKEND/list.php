@@ -166,7 +166,16 @@
 										<td class="center vl-m" data-field=""><?=$row->company?></td>
 										<td class="center vl-m" data-field=""><?=$row->phone?></td>
 										<td class="center vl-m" data-field=""><?=$row->email?></td>
-										<td class="center vl-m" data-field=""><?=$row->action?></td>
+										<td class="vl-m" style="max-width: 250px;" data-field="">
+											<?php
+												if(strpos($row->action,"http") === 0) {	
+													echo "<a target='_blank' href='" . $row->action. "'><b>Download file</b></a>";
+												} else {
+													//echo $row->action . ' <a class="label label-success item-status" href="javascript:void(0);" onclick="alert(\'HOW KNOW: ' . $row->howknow .'\nSERVICE OFFERINGS: ' . $row->serviceoffer .'\')">Show</a>';
+													echo '<b>' . $row->action. "</b><br/>" . '<span style="font-size: 13px">-How know: ' . $row->howknow . '<br/>' . '-Offers: ' . $row->serviceoffer . '</span>';
+												}
+											?>
+										</td>
 										<!--<td class="center vl-m" data-field=""><?=$row->name_category?></td>
 										<td class="center vl-m" data-field=""><a href="<?=!empty($row->link_detail)?$row->link_detail:''?>" target="_blank">LINK</a></td>
 										<!--<td class="center vl-m" data-field="status"><span class="label"><?=getStatus($row->status)?></span></td>-->

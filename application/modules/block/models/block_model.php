@@ -35,6 +35,9 @@ class Block_model extends MY_Model {
         $title = filter_input_xss($this->input->post('title'));
         $phone = filter_input_xss($this->input->post('phone'));
         $email = filter_input_xss($this->input->post('email'));
+		$howknow = filter_input_xss($this->input->post('how_know'));
+		$serviceoffer = filter_input_xss($this->input->post('chkLooking'));
+		
         $this->db->insert(DOWNLOAD_BROCHURE_TB, array(
 			'action'	=> $action,
             'fullname' => $fullname,
@@ -44,6 +47,8 @@ class Block_model extends MY_Model {
             'created'  => NOW,
             'changed'  => NOW,
             'email'    => $email,
+            'howknow'    => $howknow,
+            'serviceoffer'    => $serviceoffer,
         ));
     }
 
