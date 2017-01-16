@@ -1,4 +1,31 @@
-﻿<?php
+﻿<style>
+#ab-brochure-popup{
+	max-width: 700px !important;
+}
+.btn-carrer {
+	width: 150px !important;
+}
+.ab-submit-status {
+	min-height: 28px !important;
+}
+.padding-column2 {
+	padding-left: 20px;
+}
+.item-status {
+	padding-left: 0px !important;
+}
+.btn_download{ 
+	color: white !important;
+	background-color: #A84216;
+	padding: 10px 20px;
+	border-radius: 4px;
+	text-transform: uppercase; 
+}
+.btn_download:hover{
+	color:white;
+}
+</style>
+<?php
 	$name = language('name');
 	$description = language('description');
 	$content = language('content');
@@ -112,64 +139,114 @@
 		<a class="ab-pu-close" onclick="$.fancybox.close();" href="javascript:void(0);" title=""></a>
 		<div class="ab-pu-endorse">
 			<div class="ab-pu-endorse-tt f-bb">DOWNLOAD</div>
-            <div class="note">Please enter the information below to download our brochure</div>
+            <div class="note">Please enter the information below to download file</div>
             <form method="post" id="form_brochure_info">
-			<div class="ab-submit">
-               
-				<div class="item">
-					 <div class="form_label">Full name <span class="note-require">(*)</span></div>
-					<div class="ab-submit-text left"><input type="text" name="fullname" value="" placeholder="Enter Full name"></div>
-					<div class="clear"></div>
-				</div>
-				<div class="item">
-					<div class="form_label">Title <span class="note-require">(*)</span></div>
-					<div class="ab-submit-text left"><input type="text" name="title" value="" placeholder="Enter Title"></div>				
-					<div class="clear"></div>
-				</div>
-				<div class="item">
-					<div class="form_label">Company <span class="note-require">(*)</span></div>
-					<div class="ab-submit-text left"><input type="text" name="company" value="" placeholder="Enter Company"></div>				
-					<div class="clear"></div>
-				</div>
-				<div class="item">
-					<div class="form_label">Phone <span class="note-require">(*)</span></div>
-					<div class="ab-submit-text left "><input type="text" name="phone" value="" placeholder="Enter Phone"></div>				
-					<div class="clear"></div>
-				</div>
-				<div class="item">
-					<div class="form_label">Email <span class="note-require">(*)</span></div>
-					<div class="ab-submit-text left"><input type="text" name="email" value="" placeholder="Enter email"></div>				
-					<div class="clear"></div>
-				</div>
-				<div class="item item-captcha">
-					<div class="form_label">Verification <span class="note-require">(*)</span></div>
-					<div class="left ab-submit-text">
-						<div class="verifi" id="box_catpcha">
-							<div><img src="http://www.talentnet.vn/en/user/captcha" alt="" width="170"></div>
-							<span>Can’t see image?</span>
-							<a href="javascript:void(0)" id="btRefresh" title="">Reload</a>
+				<table style="width:100%">
+				  <tr>
+				    <td style="width: 340px" valign="top">
+						<div class="ab-submit">
+							<div class="item">
+								 <div class="form_label"><?=lang('fullname')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="fullname" value="" placeholder="<?=lang('enter').' '.lang('fullname')?>" /></div>
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label"><?=lang('title')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="title" value="" placeholder="<?=lang('enter').' '.lang('title')?>" /></div>				
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label"><?=lang('company')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="company" value="" placeholder="<?=lang('enter').' '.lang('company')?>" /></div>				
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label"><?=lang('phone')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left "><input type="text" name="phone" value="" placeholder="<?=lang('enter').' '.lang('phone')?>" /></div>				
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label">Email <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="email" value="" placeholder="<?=lang('enter')?> email" /></div>				
+								<div class="clear"></div>
+							</div>
+							<div class="item item-captcha">
+								<div class="form_label"><?=lang('verification')?> <span class="note-require">(*)</span></div>
+								<div class="left ab-submit-text">
+									<div class="verifi" id="box_catpcha">
+										<div><img src="<?=PATH_URL_LANG.'user/captcha'?>" alt="" width="170" /></div>
+										<span>Can’t see image?</span>
+										<a href="javascript:void(0)" id="btRefresh" title="">Reload</a>
+									</div>
+								</div>				
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="ab-submit-text left "><input type="text" name="captcha" value="" placeholder="<?=lang('enter').' '.lang('verification')?>" /></div>				
+								<div class="clear"></div>
+							</div>
+							<div class="clearall"></div>
 						</div>
-					</div>				
-					<div class="clear"></div>
-				</div>
-				<div class="item">
-					<div class="ab-submit-text left "><input type="text" name="captcha" value="" placeholder="Enter Verification"></div>				
-					<div class="clear"></div>
-				</div>
-	
+					</td>
+				    <td style="width: 320px" valign="top">
+						<div class="ab-submit padding-column2">
+							<div class="form-group">
+								<?=lang('how_know')?> <span class="note-require">(*)</span>
+								<div class="input">
+									<input type="text" class="field_state" name="how_know" placeholder="<?=lang('how_know')?>" value=""/>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							
+							<div class="form-group" id="chkLookingDiv">
+								<?=lang('looking_for')?> <span class="note-require">(*)</span>
+								<div>
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('executive_search')?>"/>
+									<span><?=lang('executive_search')?></span>
+									<div class="clearfix_slim"></div>
+								
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_consulting')?>"/>
+									<span><?=lang('hr_consulting')?></span>
+									<div class="clearfix_slim"></div>
+									
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('mercer_salary_surveys')?>"/>
+									<span><?=lang('mercer_salary_surveys')?></span>
+									<div class="clearfix_slim"></div>
+									
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('payroll_outsourcing')?>"/>
+									<span><?=lang('payroll_outsourcing')?></span>
+									<div class="clearfix_slim"></div>
+									
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_services_market')?>"/>
+									<span><?=lang('hr_services_market')?></span>
+									<div class="clearfix_slim"></div>
+									
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('choise_others')?>"/>
+									<span><?=lang('choise_others')?></span>
+									<div style="padding-top:5px;" class="clearfix"></div>
+									<div class="input">
+										<input type="text" class="field_state" name="choise_others_text" id="choise_others_text" placeholder="<?=lang('choise_others')?>"/>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								
+								<div class="ab-submit">
+									<div class="item item-status">
+										<p class="ab-submit-status red"></p>
+									</div>
+								</div>
+								<div class="ab-submit">
+									<div class="item">
+										<a class="btn-carrer btn-carrer-create signin f-bb" title="Send" href="javascript:void(0);"><?=lang('send')?></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				  </tr>
 
-				<div class="clearall"></div>
-			</div>
-            <div class="ab-submit">
-            	<div class="item">
-					<p class="ab-submit-status red"></p>
-            	</div>
-			</div>
-            <div class="ab-submit">
-            	<div class="item">
-	                <a class="btn-carrer btn-carrer-create signin f-bb" title="Send" href="javascript:void(0);">SEND</a>
-            	</div>
-			</div>
+
+				</table>
             </form>
 		</div>
 	</div>
@@ -177,6 +254,18 @@
 <script type="text/javascript">
 var lang_click="";
 var link_down="";
+var choise_others_empty = "<?=lang('choise_others_empty')?>";
+var choise_service_offerings = "<?=lang('choise_service_offerings')?>";
+	
+function newCaptcha() {
+	$('#btRefresh').trigger('click');
+}
+
+function DisplayMessage(message, elem) {
+	var el_status = $('#form_brochure_info .ab-submit-status'); 
+	el_status.html(message);
+	elem.focus();
+}
 $(document).ready(function(){
 	$('#box_catpcha #btRefresh').bind('click',function(){
 		rq= '?'+ new Date().getTime();;
@@ -197,6 +286,35 @@ $(document).ready(function(){
         if(!$(this).hasClass('disabled')){
             $(this).addClass('disabled');
             el_status.html('');
+			
+			var data = {};
+			var chkLooking = "[";
+			var stop = false;
+			$('input[name*="chkLooking"]').each(function(index){
+				if($(this).is(':checked')) {
+					if(parseInt(index) == 5) {
+						if($.trim($("#choise_others_text").val()) == "") {
+							DisplayMessage(choise_others_empty, $("#choise_others_text"));
+							stop = true;
+						} else {
+							chkLooking = chkLooking + "," + $.trim($("#choise_others_text").val());
+						}
+					} else {
+						chkLooking = chkLooking + "," + $(this).val();
+					}
+				}	
+			});
+			
+			chkLooking = chkLooking.replace("[,", "").replace("[", "");
+			if(chkLooking == "") {
+				DisplayMessage(choise_service_offerings, $("#chkLookingDiv"));
+				stop = true;
+			}
+			if(stop == true) {
+				$this.removeClass('disabled');
+				return;
+			}
+			
             var info={
 				action: link_down,
                 token:token,
@@ -205,7 +323,9 @@ $(document).ready(function(){
                 company : $('#form_brochure_info input[name="company"]').val(),
                 phone : $('#form_brochure_info input[name="phone"]').val(),
                 email : $('#form_brochure_info input[name="email"]').val(),
-				captcha : $('#form_brochure_info input[name="captcha"]').val()
+				captcha : $('#form_brochure_info input[name="captcha"]').val(),
+				how_know : $('#form_brochure_info input[name="how_know"]').val(),
+				chkLooking : chkLooking
                 }
            $.post('<?=base_url()?>en/block/ajax_download',info,function(res){
                 
@@ -218,6 +338,8 @@ $(document).ready(function(){
                     $('#form_brochure_info input[name="phone"]').val('');
                     $('#form_brochure_info input[name="email"]').val('');
 					$('#form_brochure_info input[name="captcha"]').val('');
+					$('#form_brochure_info input[name="how_know"]').val('');
+					$('#form_brochure_info input[name="choise_others_text"]').val('');
                     $.fancybox.close();
      				// $('#ab-brochure-popup-click').trigger('click');
 					// $('#btRefresh').trigger('click');
@@ -243,15 +365,3 @@ $(document).ready(function(){
 });
 
 </script>
-<style>
-.btn_download{ 
-	color: white !important;
-	background-color: #A84216;
-	padding: 10px 20px;
-	border-radius: 4px;
-	text-transform: uppercase; 
-}
-.btn_download:hover{
-	color:white;
-}
-</style>

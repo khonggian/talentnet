@@ -837,15 +837,21 @@ class CI_Admin {
 			$this->CI->adminwz_model->validate_ext($arr_error, $error, 'tracking', 'This field is required.');	
 			
 			if(empty($error)){
-				$file_download= Upload($_FILES['file_download'], DIR_UPLOAD_FILE_DOWNLOAD);
-				$brochure_download= Upload($_FILES['brochure_download'], DIR_UPLOAD_FILE_DOWNLOAD);
+				$file_download= UploadKeepNameFile($_FILES['file_download'], DIR_UPLOAD_FILE_DOWNLOAD);
+				$brochure_download= UploadKeepNameFile($_FILES['brochure_download'], DIR_UPLOAD_FILE_DOWNLOAD);
+				$cv_sample_download= UploadKeepNameFile($_FILES['cv_sample_download'], DIR_UPLOAD_FILE_DOWNLOAD);
+				
 				$upload_folder_now_file_download = getFolderNowFile(getFolderNow().$file_download);
 				$upload_folder_now_brochure_download = getFolderNowFile(getFolderNow().$brochure_download);
+				$upload_folder_now_cv_sample_download = getFolderNowFile(getFolderNow().$cv_sample_download);
+				
 				newFolder(DIR_UPLOAD_FILE_DOWNLOAD.$upload_folder_now_file_download);
 				newFolder(DIR_UPLOAD_FILE_DOWNLOAD.$upload_folder_now_brochure_download);
+				newFolder(DIR_UPLOAD_FILE_DOWNLOAD.$upload_folder_now_cv_sample_download);
 				$file = array(
 					'file_download' => getFolderNow().$file_download,
-					'brochure_download' => getFolderNow().$brochure_download
+					'brochure_download' => getFolderNow().$brochure_download,
+					'cv_sample_download' => getFolderNow().$cv_sample_download
 				);
 				$this->CI->admin_model->setting($arr_error, $error, $txt, $file);
 			}

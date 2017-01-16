@@ -966,6 +966,29 @@ if (!function_exists('Upload')) {
 		}//else
 	}
 }
+if (!function_exists('UploadKeepNameFile')) {
+	function UploadKeepNameFile($file = '', $uploadDir = '') {
+		if ($file['error'] != 0 || empty($uploadDir)) return false;
+		$upload_folder_now = $uploadDir.getFolderNow();
+		Newfolder($upload_folder_now);
+		$tmp_name = $file['tmp_name'];
+		$path_parts = pathinfo($file['name']);
+		$path_parts['dirname'];
+		$path_parts['filename'];
+		$path_parts['extension'];
+
+		//TODO: Lay extesion
+		$ext = "." . strtolower($path_parts['extension']);
+		$name = $path_parts['filename'] . '_' . time() . $ext;
+
+		if (move_uploaded_file($tmp_name, $upload_folder_now . $name)) {
+			//Upload  thanh cong
+			return $name;
+		} else {
+			return false;
+		}//else
+	}
+}
 if (!function_exists('is_image')) {
 	function is_image($file){
 		$ext = strtolower(end(explode('.', $file)));

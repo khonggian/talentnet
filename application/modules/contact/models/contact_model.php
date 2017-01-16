@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Contact_model extends MY_Model {
-	
+
 	function __construct(){
 		parent::__construct();
 	}
-    
+
     function insert(&$txt){
 		$data= array(
 			'fullname'		=> filter_input_xss($this->input->post('fullname'), true),
@@ -26,7 +26,7 @@ class Contact_model extends MY_Model {
 			$txt= lang('form_contact_success');
 		}
 	}
-    
+
     function validate_email(&$arr_error='', &$error=''){
 		$email= $this->input->post('email');
 		if($this->validate_null($arr_error, $form_error, 'email')){
@@ -42,8 +42,8 @@ class Contact_model extends MY_Model {
 			$arr_error[]= array(
 				'field'	=> 'email',
 				'txt'	=> lang('form_validate_null').' Email'
-			);	
+			);
 		}
 		$this->validate_error($error, $form_error);
-	}	
+	}
 }

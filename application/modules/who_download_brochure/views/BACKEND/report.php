@@ -34,7 +34,7 @@
 	<table width='100%' class='report_table' cellspacing='1' >
 	  <caption >
 		Danh sách thành viên (<?=date('d/m/y H:i:s')?>)
-	  </caption>	
+	  </caption>
 		<tr>
             <th width='100'>No</th>
             <th width='300'>FullName</th>
@@ -45,7 +45,7 @@
 			<th width='250'>Action</th>
 			<th width='120'>Created</th>
 		</tr>
-		<? if(!empty($result)) { 
+		<? if(!empty($result)) {
 			$count= 1;
 			foreach($result as $row)  {
 		?>
@@ -58,7 +58,7 @@
 			<td valign="top"><?=$row->email?></td>
 			<td valign="top">
 				<?php
-					if(strpos($row->action,"http") === 0) {	
+					if(strpos($row->action,"http") === 0) {
 						echo "<a target='_blank' href='" . $row->action. "'><b>Download file</b></a>";
 					} else {
 						//echo $row->action . ' <a class="label label-success item-status" href="javascript:void(0);" onclick="alert(\'HOW KNOW: ' . $row->howknow .'\nSERVICE OFFERINGS: ' . $row->serviceoffer .'\')">Show</a>';

@@ -169,7 +169,7 @@
 										<td class="vl-m" style="max-width: 250px;" data-field="">
 											<?php
 												if(strpos($row->action,"http") === 0) {	
-													echo "<a target='_blank' href='" . $row->action. "'><b>Download file</b></a>";
+													echo "<a target='_blank' href='" . $row->action. "'><b>Download file</b></a>" . "<br/>" . '<span style="font-size: 13px">-How know: ' . $row->howknow . '<br/>' . '-Offers: ' . $row->serviceoffer . '</span>';;
 												} else {
 													//echo $row->action . ' <a class="label label-success item-status" href="javascript:void(0);" onclick="alert(\'HOW KNOW: ' . $row->howknow .'\nSERVICE OFFERINGS: ' . $row->serviceoffer .'\')">Show</a>';
 													echo '<b>' . $row->action. "</b><br/>" . '<span style="font-size: 13px">-How know: ' . $row->howknow . '<br/>' . '-Offers: ' . $row->serviceoffer . '</span>';

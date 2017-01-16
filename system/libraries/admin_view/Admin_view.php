@@ -247,7 +247,7 @@ class CI_Admin_view {
 			'field'			=> filter_input_xss($this->CI->input->get('field')),
 			'filter'		=> $this->CI->admin_model->get('*', ADMIN_MODULE_LIST_FILTER_TB, "id = '".(int)$this->CI->input->get('filter')."'"),
 			'range'			=> filter_input_xss($this->CI->input->get('range')),
-			'excel'			=> filter_input_xss($this->CI->input->get('excel'))
+			'excel'			=> filter_input_xss($this->CI->input->get('excel')) 
 		);
 
 		if(!empty($get['module']))
@@ -434,7 +434,7 @@ class CI_Admin_view {
 			'sort'			=> filter_input_xss($this->CI->input->get('sort')),
 			'field'			=> filter_input_xss($this->CI->input->get('field')),
 			'range'			=> filter_input_xss($this->CI->input->get('range')),
-			'excel'			=> filter_input_xss($this->CI->input->get('excel'))
+			'excel'			=> filter_input_xss($this->CI->input->get('excel')) 
 		);
 		
 		$page_size		= ($this->CI->input->get('ps'))?(int)$this->CI->input->get('ps'):10;

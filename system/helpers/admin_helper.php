@@ -52,7 +52,7 @@ if ( ! function_exists('getManageModuleLink'))
 
 if ( ! function_exists('field_data'))
 {
-	function field_data($row, $field){
+	function field_data($row, $field){ 
 		$select= $field->select;
 		$field_data= '';
 		switch($field->type){

@@ -52,7 +52,7 @@ class Admin extends MX_Controller {
 		);
 		
         if($this->input->get('excel')!='' && $this->input->get('excel')){
-            $this->load->view('BACKEND/report', $data);
+            $this->load->view('BACKEND/report', $data); 
         }
         else{
     		$this->template->write('title', 'Subscribe');
