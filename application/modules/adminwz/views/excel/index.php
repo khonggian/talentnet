@@ -17,7 +17,7 @@
 		border:1px solid black;
 	}
 	.report_table td{
-		padding:5px;
+		padding:5px; 
 		border:1px solid black;
 	}
 	.report_table tr{
