@@ -53,7 +53,7 @@
 		</div>
 		<div class="ab-r col-md-4">
 			<div class="ab-surely">
-				<div class="ab-surely-tt f-bb">YOU SURELY USE</div>
+				<div class="ab-surely-tt f-bb">LEARN MORE</div>
 				<div class="tab-surely">
 					<div class="item-surely">
 						<div class="btn-surely"><a class="f-bb active" href="javascript:void(0);" title="">Lorem ipsum dolor</a></div>

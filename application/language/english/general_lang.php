@@ -194,7 +194,7 @@ $lang['All_Locations']="All Locations";
 
 /*OTHER */
 $lang['Corporate_Social_Activities']="Corporate Social Activities";
-$lang['you_surely_use']="YOU SURELY USE";
+$lang['you_surely_use']="LEARN MORE";
 $lang['endorse_now']="ENDORSE NOW";
 $lang['can_not_choose_more']="You have already selected this keyword";
 $lang['login_to_endorse']="PLEASE LOGIN TO ENDORSE";
@@ -379,7 +379,7 @@ $lang['professional_profile'] ='Professional Profile';
 $lang['education_profile'] ='Education';
 $lang['membership_profile'] ='Membership';
 $lang['additional_information'] ='Additional Information';
-/*FAQ RESULT*/ 
+/*FAQ RESULT*/
 $lang['no_result'] ='Results not found';
 $lang['submit_info']="Submit information";
 
@@ -407,7 +407,3 @@ $lang['upload_cv_success'] = "Upload CV success";
 $lang['title_404'] = 'Page not found';
 $lang['desc_404'] = 'No pages are found at this address';
 $lang['language'] = 'Language';
-
-
-
-

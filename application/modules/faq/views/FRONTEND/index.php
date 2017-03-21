@@ -90,7 +90,7 @@
 					<img src="<?=base_url()?>assets/img/btn/btn-brochure.png" alt="" />
 				</a>
 			</div>
-			<div class="legislation"><a href="http://backup.talentnet.vn/edm/client-subcribe.html">Stay update with Vietnam HR Legislation</a></div>
+			<div class="legislation"><a href="http://backup.talentnet.vn/edm/client-subcribe.html">STAY UPDATED WITH VIETNAM’S HR LEGISLATION</a></div>
 			
 			<div class="ab-question mt29">
 				<div class="ab-question-tt f-bb"><?=lang('user_questions')?></div>

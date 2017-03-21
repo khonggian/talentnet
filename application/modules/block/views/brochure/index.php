@@ -18,7 +18,7 @@
 
 <!--<div class="ab-brochure"><a href="<?=PATH_URL_LANG.'download'?>" title="Download"></a></div>-->
 <div class="ab-brochure"><a href="#ab-brochure-popup" onclick="newCaptcha()" id="popup_brochure" title="Download"><img src="<?=base_url()?>assets/img/btn/btn-brochure.png" alt="" /></a></div>
-<div class="legislation" style="margin-bottom:20px"><a href="http://backup.talentnet.vn/edm/client-subcribe.html">Stay update with Vietnam HR Legislation</a></div>
+<div class="legislation" style="margin-bottom:20px"><a href="http://backup.talentnet.vn/edm/client-subcribe.html">STAY UPDATED WITH VIETNAM’S HR LEGISLATION</a></div>
 <div style="display: none;">
 	<div id="ab-brochure-popup">
 		<a class="ab-pu-close" onclick="$.fancybox.close();" href="javascript:void(0);" title=""></a>
