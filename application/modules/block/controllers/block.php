@@ -155,6 +155,8 @@ class Block extends MX_Controller {
         $this->block_model->validate_ext($arr_error,$error,'email',lang('Please_enter').' '.'email');
         $this->block_model->validate_email($arr_error,$error,'email',lang('form_invalid').' '.'email address');
         $this->block_model->validate_captcha($arr_error,$error);
+		$this->block_model->validate_ext($arr_error, $error, 'how_know', lang('form_validate_null') .' '.lang('how_know'));		
+		$this->block_model->validate_ext($arr_error, $error, 'chkLooking', lang('form_validate_null') .' '.lang('choise_service_offerings'));
         
         if(empty($error)){
             $this->block_model->insert_who_download_brochure();

@@ -9,7 +9,7 @@
 		<div class="menu-ab">
 			<a href="<?=PATH_URL_LANG?>" title="<?=lang('Homepage')?>"><?=lang('Homepage')?></a><span class="active"><?=lang('contact')?></span>
 		</div>
-		
+
 		<div class="form-profile ct pdbt18">
 			<h1 class="title"><?=lang('contact_us')?></h1>
 			<div class="row contact-page">
@@ -37,8 +37,8 @@
 				<div class="col-md-6">
 					<div class="title3"><?=lang('contact_form')?></div>
 					<div class="fs14 c_a84216 mt17"><strong><?=lang('please_contact')?></strong></div>
-                    <form action="" class="form-horizontal" role="form" method="post" enctype="multipart/form-data" id="frContact">
-						
+                    <form action="" class="form-horizontal contact-form-responsive" role="form" method="post" enctype="multipart/form-data" id="frContact">
+
 						<div class="form-group">
 							<div class="lable"><?=lang('fullname')?> <span> *</span></div>
 							<div class="input">
@@ -60,7 +60,7 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
-							
+
 						<div class="form-group">
 							<div class="lable"><?=lang('phone_number')?> <span> *</span></div>
 							<div class="input">
@@ -68,7 +68,7 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
-					
+
 						<div class="form-group">
 							<div class="lable"><?=lang('email')?> <span> *</span></div>
 							<div class="input">
@@ -76,60 +76,78 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						
+
 						<div class="form-group">
-							<div class="lable"><?=lang('city_state_country')?> <span> *</span></div>
+							<div class="lable"><?=lang('city_state_country')?> <span class="required"> *</span></div>
 							<div class="input">
 								<input type="text" class="field_state" name="state" placeholder="<?=lang('city_state_country')?>" value="Viet Nam"/>
 							</div>
 							<div class="clearfix"></div>
 						</div>
+
 						<div class="form-group">
 							<div class="lable" style="line-height: 18px;"><?=lang('how_know')?> <span> *</span></div>
-							<div class="input">
-								<input type="text" class="field_state" name="how_know" placeholder="<?=lang('how_know')?>" value=""/>
+							<div class="right-group">
+                                <div class="select">
+    								<select onchange="contact_change_know(this);" class="js-select" name="how_know_choose" id="how_know_choose">
+    									<option value="<?=lang('select')?>"><?=lang('select')?></option>
+    									<option value="<?=lang('how_know_1')?>"><?=lang('how_know_1')?></option>
+    									<option value="<?=lang('how_know_2')?>"><?=lang('how_know_2')?></option>
+    									<option value="<?=lang('how_know_3')?>"><?=lang('how_know_3')?></option>
+    									<option value="<?=lang('how_know_4')?>"><?=lang('how_know_4')?></option>
+    									<option value="<?=lang('how_know_5')?>"><?=lang('how_know_5')?></option>
+    									<option value="<?=lang('how_know_6')?>"><?=lang('how_know_6')?></option>
+    									<option value="<?=lang('how_know_7')?>"><?=lang('how_know_7')?></option>
+    									<option value="<?=lang('how_know_8')?>"><?=lang('how_know_8')?></option>
+    									<option value=""><?=lang('how_know_9')?></option>
+    								</select>
+                                </div>
+								<div class="clearfix"></div>
+								<div id="how_know_group" class="input">
+									<input type="text" class="field_state" name="how_know" id="how_know" placeholder="Others (please specify)" value=""/>
+								</div>
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						
+
 						<div class="form-group" id="chkLookingDiv">
-							<div class="lable" style="line-height: 18px;"><?=lang('looking_for')?> <span> *</span></div>
-							<div style="margin-left: 115px;">
+							<div class="lable" style="line-height: 18px;"><?=lang('looking_for')?> <span class="required"> *</span></div>
+							<div class="right-group">
 								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('executive_search')?>"/>
 								<span><?=lang('executive_search')?></span>
 								<div class="clearfix_slim"></div>
-							
+
 								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_consulting')?>"/>
 								<span><?=lang('hr_consulting')?></span>
 								<div class="clearfix_slim"></div>
-								
+
 								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('mercer_salary_surveys')?>"/>
 								<span><?=lang('mercer_salary_surveys')?></span>
 								<div class="clearfix_slim"></div>
-								
+
 								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('payroll_outsourcing')?>"/>
 								<span><?=lang('payroll_outsourcing')?></span>
 								<div class="clearfix_slim"></div>
-								
+
 								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_services_market')?>"/>
 								<span><?=lang('hr_services_market')?></span>
 								<div class="clearfix_slim"></div>
-								
+
 								<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('choise_others')?>"/>
 								<span><?=lang('choise_others')?></span>
 								<div style="padding-top:5px;" class="clearfix"></div>
 								<div class="input">
 									<input type="text" class="field_state" name="choise_others_text" id="choise_others_text" placeholder="<?=lang('choise_others')?>"/>
 								</div>
-								
+
 							</div>
 							<div class="clearfix"></div>
 						</div>
-		
+
 						<div class="form-group">
 							<div class="lable"><?=lang('your_request')?> <span> *</span></div>
 							<div class="area">
-								
+
                                 <textarea class="txt_contact field_content" placeholder="<?=lang('your_request')?>" name="content"></textarea>
 							</div>
 							<div class="clearfix"></div>
@@ -140,14 +158,14 @@
 								<div id="div_error" class="style-error"></div>
 								<input type="button" value="<?=lang('send')?>" id="btn_send" class="btn-update btn_send btnSend" />
 							</div>
-                            
+
 							<div class="clearfix"></div>
 						</div>
 					</form>
 				</div>
 			</div>
         </div>
-		
+
 	</div>
 </div>
 <script type="text/javascript">
@@ -159,12 +177,21 @@
 		    .fancybox({
 		        type: 'iframe',
 		        autoSize : false,
-		        beforeLoad : function() {                    
+		        beforeLoad : function() {
 		             this.width = 600;
 		             this.height = 450;
 		        }
 		    });
 	});
+
+	function contact_change_know(element) {
+		$("#how_know").val(element.value);
+		if(element.value != "") {
+			$("#how_know_group").hide();
+		} else {
+			$("#how_know_group").show();
+		}
+	}
 </script>
 <a href="#ab-pu-endorse-tk" id="popup_tk"></a>
 <div style="display: none;">
@@ -179,4 +206,3 @@
 		</div>
 	</div>
 </div>
-

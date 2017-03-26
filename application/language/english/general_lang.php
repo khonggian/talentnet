@@ -137,6 +137,16 @@ $lang['your_email'] = 'Your email';
 $lang['city_state_country'] = 'Country';
 $lang['your_request'] = 'Your Request';
 $lang['how_know'] = 'How do you know about Talentnet?';
+$lang['how_know_1'] = 'Internet';
+$lang['how_know_2'] = 'Cold call';
+$lang['how_know_3'] = 'Referrals';
+$lang['how_know_4'] = 'Talentnet events';
+$lang['how_know_5'] = 'Advertisement on Newspaper/Magazine';
+$lang['how_know_6'] = 'Articles on Newspaper/Magazine';
+$lang['how_know_7'] = 'Email marketing';
+$lang['how_know_8'] = 'Social media (Facebook, LinkedIn, Twitter, Instagram, etc.)';
+$lang['how_know_9'] = 'Others (please specify)';
+
 $lang['looking_for'] = 'Which service offerings are you looking for?';
 $lang['executive_search'] = 'Executive Search';
 $lang['hr_consulting'] = 'HR Consulting';
@@ -379,7 +389,7 @@ $lang['professional_profile'] ='Professional Profile';
 $lang['education_profile'] ='Education';
 $lang['membership_profile'] ='Membership';
 $lang['additional_information'] ='Additional Information';
-/*FAQ RESULT*/ 
+/*FAQ RESULT*/
 $lang['no_result'] ='Results not found';
 $lang['submit_info']="Submit information";
 
@@ -407,7 +417,3 @@ $lang['upload_cv_success'] = "Upload CV success";
 $lang['title_404'] = 'Page not found';
 $lang['desc_404'] = 'No pages are found at this address';
 $lang['language'] = 'Language';
-
-
-
-

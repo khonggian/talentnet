@@ -13,7 +13,7 @@ function get_csv_array($file_path)
 	}
 	return $final_array;
 }
-function post_to_url($url) 
+function post_to_url($url)
 {
 	 $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -27,20 +27,20 @@ function post_to_url($url)
     return $result;
 }
 if (!function_exists('soapclient')) {
-	function soapclient($module_name, $param) { 
+	function soapclient($module_name, $param) {
 		$user_name ='portal';
 		$user_password = 'portal';
 
 		$offset = 0;
-		require_once('nusoap/nusoap.php'); 
-		$soapclient = new nusoapclient('http://10.0.0.78/Sugar/soap.php'); 
+		require_once('nusoap/nusoap.php');
+		$soapclient = new nusoapclient('http://10.0.0.78/Sugar/soap.php');
 		$result = $soapclient->call('login',array('user_auth'=>array('user_name'=>$user_name,'password'=>md5($user_password), 'version'=>'.01'), 'application_name'=>'SoapTestPortal'));
 		$session = $result['id'];
 		$result = $soapclient->call('set_entry',
-			array('session'=>$session , 
-			'module_name'=> $module_name, 
+			array('session'=>$session ,
+			'module_name'=> $module_name,
 			'name_value_list'=> $param
-		));		
+		));
 		$CI = & get_instance();
 		$CI->load->helper('file');
 		write_file('crm_log/'.$module_name.'.txt',json_encode($param,1));
@@ -49,26 +49,26 @@ if (!function_exists('soapclient')) {
 }
 
 if (!function_exists('soapclient_document')){
-	function soapclient_document($upload_cv,$deleted=0){ 
+	function soapclient_document($upload_cv,$deleted=0){
 		$user_name ='portal';
 		$user_password = 'portal';
 
 		$offset = 0;
-		require_once('nusoap/nusoap.php'); 
-		$soapclient = new nusoapclient('http://10.0.0.78/Sugar/soap.php'); 
+		require_once('nusoap/nusoap.php');
+		$soapclient = new nusoapclient('http://10.0.0.78/Sugar/soap.php');
 		$result = $soapclient->call('login',array('user_auth'=>array('user_name'=>$user_name,'password'=>md5($user_password), 'version'=>'.01'), 'application_name'=>'SoapTestPortal'));
-		$session = $result['id'];	
+		$session = $result['id'];
 		//pr($session,1);
 		$document_name= 'Upload_CV_'.$upload_cv->id;
 		$result = $soapclient->call('set_entry',
-			array('session'=>$session , 
-			'module_name'=>'Documents', 
+			array('session'=>$session ,
+			'module_name'=>'Documents',
 			'name_value_list'=>array(
 				array('name' => 'id', 'value' => $upload_cv->candidate_id),
 				array('name'=>'document_name','value'=> $document_name), // Tên file
 				array('name'=>'deleted','value'=>$deleted),
 		   ))
-			
+
 		);
 
 
@@ -97,35 +97,35 @@ if (!function_exists('soapclient_document')){
 		write_file('crm_log/set_document_revision.txt',json_encode($set_note_attachment_parameters,1));
 
 		$result = $soapclient->call('set_entry',
-			array('session'=>$session , 
-			'module_name'=>'Documents', 
+			array('session'=>$session ,
+			'module_name'=>'Documents',
 			'name_value_list'=>array(
 				array('name'=>'document_name','value'=>$document_name), // File CV. Ex: upload/CV.doc
 				array("name" => "id", "value" => $note_id,),
 				array("name" => "document_revision_id", "value" => $note_id,),
 		   ))
 		);
-		
+
 		return $result;
 	}
 }
 
 if (!function_exists('random')) {
-	function random($int= 11, $upper= false) { 
+	function random($int= 11, $upper= false) {
 		if(!empty($upper))
 		{
-			$s = strtoupper(md5(uniqid(rand(),true))); 
+			$s = strtoupper(md5(uniqid(rand(),true)));
 		}
 		else
 		{
-			$s = md5(uniqid(rand(),true)); 
+			$s = md5(uniqid(rand(),true));
 		}
-		// $guidText = 
-			// substr($s,0,8) . '-' . 
-			// substr($s,8,4) . '-' . 
-			// substr($s,12,4). '-' . 
-			// substr($s,16,4). '-' . 
-			// substr($s,20); 
+		// $guidText =
+			// substr($s,0,8) . '-' .
+			// substr($s,8,4) . '-' .
+			// substr($s,12,4). '-' .
+			// substr($s,16,4). '-' .
+			// substr($s,20);
 		$guidText= substr($s,0, $int);
 		return $guidText;
 	}
@@ -140,7 +140,7 @@ if (!function_exists('link_lang'))
 }
 
 if (!function_exists('json_format_like')) {
-	function json_format_like($value){ 
+	function json_format_like($value){
 		$value= json_encode($value);
 		$value= str_replace("/", "\\\\\\\/", $value);
 		$value= str_replace("\\", "\\\\\\\\", $value);
@@ -149,7 +149,7 @@ if (!function_exists('json_format_like')) {
 }
 
 if (!function_exists('array_like')) {
-	function array_like($field, $array){ 
+	function array_like($field, $array){
 		$count= 0;
 		$sql= '';
 		if(!empty($array))
@@ -196,14 +196,14 @@ function count_r($array, $i = 0){
 
 if ( ! function_exists('input_editor')){
 	function input_editor($str){
-		$str = str_replace(base_url(), '', $str);
+		//$str = str_replace(base_url(), '', $str);
 		return $str;
 	}
 }
 
 if ( ! function_exists('output_editor')){
 	function output_editor($str){
-		$str = str_replace('uploads/editor/', base_url().'uploads/editor/', $str);
+		//$str = str_replace('uploads/editor/', base_url().'uploads/editor/', $str);
 		return $str;
 	}
 }
@@ -214,16 +214,16 @@ if ( ! function_exists('curl_get')){
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //Set curl to return the data instead of printing it to the browser.
-		
+
 		if(!empty($param)) {
 			$url .= '?' . http_build_query($param);
 		}
-		
+
 		curl_setopt($ch, CURLOPT_URL, $url);
 		//curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($param, null, '&'));
 		$data = curl_exec($ch);
 		curl_close($ch);
-		return (!empty($decode)) ? json_decode($data) : $data;		
+		return (!empty($decode)) ? json_decode($data) : $data;
 	}
 }
 
@@ -238,11 +238,11 @@ if ( ! function_exists('curl_post')){
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 			$resp = curl_exec($ch);
-			
+
 			return (!empty($decode)) ? json_decode($resp) : $resp;
-		}catch (Exception $e) {				
+		}catch (Exception $e) {
 			return null;
-		}	
+		}
 	}
 }
 
@@ -262,15 +262,15 @@ if ( ! function_exists('curl_copy')){
 			// close cURL resource, and free up system resources
 			curl_close($ch);
 			fclose($fh);
-			
+
 			return (file_exists($save)) ? TRUE : FALSE;
-		}	
+		}
 	}
 }
 
 if ( ! function_exists('CutText')){
-	function CutText($text, $n=80) 
-	{ 
+	function CutText($text, $n=80)
+	{
 		// string is shorter than n, return as is
 		if (strlen($text) <= $n) {
 			return $text;}
@@ -382,7 +382,7 @@ if (!function_exists('pr')) {
 
 if (!function_exists('getSubDomain')) {
 	function getSubDomain(){
-		$subdomain = substr($_SERVER['HTTP_HOST'], 0, strpos($_SERVER['HTTP_HOST'], '.')); 
+		$subdomain = substr($_SERVER['HTTP_HOST'], 0, strpos($_SERVER['HTTP_HOST'], '.'));
 		return $subdomain;
 	}
 }
@@ -494,7 +494,7 @@ if ( ! function_exists('getInfoOpenID'))
 					$info['avatar'] = $_REQUEST['openid_ax_value_image'];
 				} else {
 					$info['avatar'] = '';
-				}				
+				}
 			break;
 			case('facebook'):
 				$CI->load->model('fb/fb_model','fb_model');
@@ -634,7 +634,7 @@ if ( ! function_exists('getIP')){
 		{
 		  $ip=$_SERVER['HTTP_CLIENT_IP'];
 		}
-		elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   
+		elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
 		//to check ip is pass from proxy
 		{
 		  $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -649,9 +649,9 @@ if ( ! function_exists('getIP')){
 
 if (!function_exists('getAcessTokenFromCodeFB')) {
 	function getAcessTokenFromCodeFB($code= ''){
-		$url = 'https://graph.facebook.com/oauth/access_token?client_id='.FB_APP_ID.'&redirect_uri='.urlencode(base_url().OPENID_REDIRECT_URL.'/facebook').'&client_secret='.FB_APP_SECRET.'&code='.$code;		
+		$url = 'https://graph.facebook.com/oauth/access_token?client_id='.FB_APP_ID.'&redirect_uri='.urlencode(base_url().OPENID_REDIRECT_URL.'/facebook').'&client_secret='.FB_APP_SECRET.'&code='.$code;
 		$resp= file_get_contents($url);
-		parse_str($resp);	
+		parse_str($resp);
 		return (!empty($access_token)) ? $access_token : FALSE;
 	}
 }
@@ -665,8 +665,8 @@ if (!function_exists('getAcessTokenFromCodeG')) {
 			'grant_type'		=> 'authorization_code',
 			'code'				=> $code
 		);
-		
-		$resp = curl_post('https://accounts.google.com/o/oauth2/token', $param);	
+
+		$resp = curl_post('https://accounts.google.com/o/oauth2/token', $param);
 		return (!empty($resp->access_token)) ? $resp->access_token : FALSE;
 	}
 }
@@ -677,8 +677,8 @@ if (!function_exists('getExtendedTokenFB')) {
 		$resp = curl_get($extend_url, '', false);
 		parse_str($resp,$output);
 		$extended_token = $output['access_token'];
-		return $extended_token;		
-	}	
+		return $extended_token;
+	}
 }
 
 if ( ! function_exists('cutUnicode'))
@@ -692,7 +692,7 @@ if ( ! function_exists('cutUnicode'))
 			 'D'=>'Đ',
 			 'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ',
 			 'E'=>'É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
-			 'i'=>'í|ì|ỉ|ĩ|ị',	  
+			 'i'=>'í|ì|ỉ|ĩ|ị',
 			 'I'=>'Í|Ì|Ỉ|Ĩ|Ị',
 			 'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ',
 			 'O'=>'Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
@@ -720,7 +720,7 @@ if ( ! function_exists('current_path'))
 		$end_path= ($end_path == '/') ?  '/' : '';
 		$current_url= $current_url.$end_path.$query_string;
 
-		return $current_url;		
+		return $current_url;
 	}
 }
 
@@ -771,7 +771,7 @@ function time_ago($timestamp){
         // return $diff == 1 ? $diff . ' second ago' : $diff . ' seconds ago';
 		// return 'ít hơn một phút trước';
     }
-	
+
 
     if ($diff >= 60 && $diff < $intervals['hour'])
     {
@@ -820,7 +820,7 @@ if (!function_exists('password')) {
 if (!function_exists('pagination')) {
     function pagination($totalRows, $pageNum = 1, $pageSize, $limit = 3) {
         settype($totalRows, "int"); settype($pageSize, "int");
-        
+
         $totalPages = ceil($totalRows / $pageSize);
         if ($totalRows <= 0 || $totalPages <= 1) return "";
         $currentPage = $pageNum;
@@ -832,7 +832,7 @@ if (!function_exists('pagination')) {
         if ($form <= 0) {
             $form = 1; $to = $limit * 2;
         };
-		
+
         if ($to > $totalPages) $to = $totalPages;
 
         $first = '';$prev = '';$next = '';$last = '';$link = '';
@@ -851,7 +851,7 @@ if (!function_exists('pagination')) {
         }
         $sep = (!empty($querystring)) ? '&' : '';
         $linkUrl = $linkUrl . '?' . $querystring . $sep . 'p=';
-		
+
 		/* FIRST */
         if ($currentPage > $limit + 2) {
             //$first= "<a href='$linkUrl' class='first'>...</a>&nbsp;";
@@ -1058,7 +1058,7 @@ if(!function_exists('pagelistLimited')) {
 			if($totalRows <= 0) return "";
 
 			$totalPages= ceil($totalRows / $pageSize);
-	
+
 			if($totalPages <= 1) return "";
 			$currentPage= $pageNum;
 			if($currentPage <= 0 || $currentPage > $totalPages) $currentPage= 1;
@@ -1078,7 +1078,7 @@ if(!function_exists('pagelistLimited')) {
 			$linkUrl= current_url();
 
 			$query_string='';
-			
+
 			if($_GET)
 			{
 				$query_get= $_GET;
@@ -1086,9 +1086,9 @@ if(!function_exists('pagelistLimited')) {
 				$query_string = http_build_query($query_get);
 			}
 			$sep= (!empty($query_string)) ? '&' : '';
-			
+
 			$linkUrl= $linkUrl.'?'.$query_string.$sep.'p=';
-		
+
 			if($currentPage > $limit) {
 			/** first */
 				$first= "<a href='$linkUrl' class='first'> &laquo; </a>&nbsp;";
@@ -1120,7 +1120,7 @@ if(!function_exists('pagelistLimited')) {
 				else $link.= "<a href='$linkUrl$i'>$i</a>&nbsp;";
 			}
 
-			
+
 
 			$pagination = '<div class="bg-pager"><div class="pagination">'.$first.$prev.$link.$next.$last.'</div>';
 			if($totalPages > 1){
@@ -1132,8 +1132,8 @@ if(!function_exists('pagelistLimited')) {
 							<select class="js-select" id="change_number_page">';
 							for($i=1; $i <= $totalPages; $i++){
 								$seleted = $currentPage == $i?'selected="selected"':'';
-			$pagination .= 		'<option value='.$i.' '.$seleted.'> Trang '.$i.'/ '.$totalPages.'</option>'	;				
-							}	
+			$pagination .= 		'<option value='.$i.' '.$seleted.'> Trang '.$i.'/ '.$totalPages.'</option>'	;
+							}
 			$pagination .= '</select>
 						</div>
 					</div></div>';
@@ -1151,14 +1151,14 @@ if (!function_exists('img')) {
         if (!file_exists($image_path) || !is_file($image_path)) {
             $image_path = 'assets/img/no-image.jpg';
         }
-		
+
         //The new generated filename we want
         $fileinfo = pathinfo($image_path);
 
         //MAKE A FOLDER
 		//$upload_folder_time= filemtime($image_path);
 		$upload_folder_now= date('Y-m-d').'/';
-		
+
         if (!empty($width) && !empty($height))
 		{
             $uploaddir_thumb = 'uploads/cache/'. $upload_folder_now . $width . 'x' . $height . '/' ;
@@ -1167,14 +1167,14 @@ if (!function_exists('img')) {
         }else{
 			$uploaddir_thumb = 'uploads/cache/thumbnail/'.$upload_folder_now;
 		}
-		
+
 		// $folder_old= date('Y-m-d', strtotime("-8 week"));
 		// $map = directory_map('uploads/cache/');
 		// foreach($map as $k=>$v)
 		// {
 			// if($k <= $folder_old) deleteDir('uploads/cache/'.$k);
 		// }
-		
+
         newfolder($uploaddir_thumb);
         $new_image_path = $uploaddir_thumb . $fileinfo['filename'] . '.' . $fileinfo['extension'];
 
@@ -1194,7 +1194,7 @@ if (!function_exists('img')) {
 
             //Initialising
             $new_width = 0; $new_height = 0;
-			
+
             //Calculations
             if ($requested_width > $requested_height) {
                 $new_width = $requested_width;
@@ -1271,7 +1271,7 @@ if (!function_exists('language')) {
 		}else{
 			return $lang;
 		}
-		
+
 	}
 }
 if (!function_exists('change_lang')) {
@@ -1283,7 +1283,7 @@ if (!function_exists('change_lang')) {
 		}else{
 			return $link;
 		}
-		
+
 	}
 }
 if (!function_exists('url_lang')) {
