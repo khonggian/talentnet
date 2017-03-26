@@ -243,7 +243,7 @@
 					</div>
 					<div class="col-md-4 txt-r">
 						<a href="https://www.linkedin.com/company/talentnet-corporation?trk=tyah&trkInfo=tarId%3A1423191960019%2Ctas%3Atalentnet+cor%2Cidx%3A1-1-1" title="" target="_blank">FOLLOW US <img src="<?=base_url()?>assets/img/icon/icon-in.png" alt="" /></a>
-						<div class="legislation" style="margin-top:10px;"><a href="http://backup.talentnet.vn/edm/client-subcribe.html">Stay update with Vietnam HR Legislation</a></div>
+						<div class="legislation" style="margin-top:10px;"><a href="http://backup.talentnet.vn/edm/client-subcribe.html">STAY UPDATED WITH VIETNAM’S HR LEGISLATION</a></div>
 					</div>
 				</div>
 			</div>

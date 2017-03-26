@@ -204,7 +204,7 @@ $lang['All_Locations']="All Locations";
 
 /*OTHER */
 $lang['Corporate_Social_Activities']="Corporate Social Activities";
-$lang['you_surely_use']="YOU SURELY USE";
+$lang['you_surely_use']="LEARN MORE";
 $lang['endorse_now']="ENDORSE NOW";
 $lang['can_not_choose_more']="You have already selected this keyword";
 $lang['login_to_endorse']="PLEASE LOGIN TO ENDORSE";
