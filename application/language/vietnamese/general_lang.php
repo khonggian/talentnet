@@ -145,6 +145,15 @@ $lang['payroll_outsourcing'] = ' Tính lương và thuê ngoài nhân sự';
 $lang['hr_services_market'] = 'Các dịch vụ nhân sự dành riêng cho các công ty nước ngoài mới thành lập tại Việt Nam';
 $lang['choise_others'] = 'Khác (vui lòng ghi chi tiết)';
 $lang['choise_service_offerings'] = 'Vui lòng chọn dịch vụ quan tâm';
+$lang['how_know_1'] = 'Internet';
+$lang['how_know_2'] = 'Cold call';
+$lang['how_know_3'] = 'Referrals';
+$lang['how_know_4'] = 'Talentnet events';
+$lang['how_know_5'] = 'Advertisement on Newspaper/Magazine';
+$lang['how_know_6'] = 'Articles on Newspaper/Magazine';
+$lang['how_know_7'] = 'Email marketing';
+$lang['how_know_8'] = 'Social media (Facebook, LinkedIn, Twitter, Instagram, etc.)';
+$lang['how_know_9'] = 'Others (please specify)';
 $lang['choise_others_empty'] = 'Vui lòng ghi chi tiết';
 $lang['send'] = 'GỬI';
 $lang['send_success'] = 'Gởi thành công';
@@ -381,7 +390,7 @@ $lang['professional_profile'] ='Tiểu sử cá nhân';
 $lang['membership_profile'] ='Membership';
 $lang['membership_profile'] ='Membership';
 $lang['additional_information'] ='Thông tin đính kèm';
-/*FAQ RESULT*/ 
+/*FAQ RESULT*/
 $lang['no_result'] ='Không tìm thấy kết quả';
 $lang['submit_info']="Đăng ký nhận tin";
 
