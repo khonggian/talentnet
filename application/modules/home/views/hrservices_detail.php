@@ -155,6 +155,142 @@
 	</div>
 </div>
 
+<div style="display: none;">
+	<div id="ab-brochure-popup">
+		<a class="ab-pu-close" onclick="$.fancybox.close();" href="javascript:void(0);" title=""></a>
+		<div class="ab-pu-endorse">
+			<div class="ab-pu-endorse-tt f-bb">DOWNLOAD</div>
+            <div class="note">Please enter the information below to download file</div>
+            <form method="post" id="form_brochure_info" class="contact-form-responsive">
+				<table style="width:100%">
+				  <tr>
+				    <td style="width: 340px" valign="top">
+						<div class="ab-submit">
+							<div class="item">
+								 <div class="form_label"><?=lang('fullname')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="fullname" value="" placeholder="<?=lang('enter').' '.lang('fullname')?>" /></div>
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label"><?=lang('title')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="title" value="" placeholder="<?=lang('enter').' '.lang('title')?>" /></div>
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label"><?=lang('company')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="company" value="" placeholder="<?=lang('enter').' '.lang('company')?>" /></div>
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label"><?=lang('phone')?> <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left "><input type="text" name="phone" value="" placeholder="<?=lang('enter').' '.lang('phone')?>" /></div>
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="form_label">Email <span class="note-require">(*)</span></div>
+								<div class="ab-submit-text left"><input type="text" name="email" value="" placeholder="<?=lang('enter')?> email" /></div>
+								<div class="clear"></div>
+							</div>
+							<div class="item item-captcha">
+								<div class="form_label"><?=lang('verification')?> <span class="note-require">(*)</span></div>
+								<div class="left ab-submit-text">
+									<div class="verifi" id="box_catpcha">
+										<div><img src="<?=PATH_URL_LANG.'user/captcha'?>" alt="" width="170" /></div>
+										<span>Can’t see image?</span>
+										<a href="javascript:void(0)" id="btRefresh" title="">Reload</a>
+									</div>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="item">
+								<div class="ab-submit-text left "><input type="text" name="captcha" value="" placeholder="<?=lang('enter').' '.lang('verification')?>" /></div>
+								<div class="clear"></div>
+							</div>
+							<div class="clearall"></div>
+						</div>
+					</td>
+				    <td style="width: 320px" valign="top">
+						<div class="ab-submit padding-column2">
+							<div class="form-group">
+								<div class="lable" style="line-height: 18px;"><?=lang('how_know')?> <span> *</span></div>
+								<div class="right-group">
+	                                <div class="select">
+	    								<select onchange="contact_change_know(this);" class="js-select" name="how_know_choose" id="how_know_choose">
+	    									<option value="<?=lang('select')?>"><?=lang('select')?></option>
+	    									<option value="<?=lang('how_know_1')?>"><?=lang('how_know_1')?></option>
+	    									<option value="<?=lang('how_know_2')?>"><?=lang('how_know_2')?></option>
+	    									<option value="<?=lang('how_know_3')?>"><?=lang('how_know_3')?></option>
+	    									<option value="<?=lang('how_know_4')?>"><?=lang('how_know_4')?></option>
+	    									<option value="<?=lang('how_know_5')?>"><?=lang('how_know_5')?></option>
+	    									<option value="<?=lang('how_know_6')?>"><?=lang('how_know_6')?></option>
+	    									<option value="<?=lang('how_know_7')?>"><?=lang('how_know_7')?></option>
+	    									<option value="<?=lang('how_know_8')?>"><?=lang('how_know_8')?></option>
+	    									<option value=""><?=lang('how_know_9')?></option>
+	    								</select>
+	                                </div>
+									<div class="clearfix"></div>
+									<div id="how_know_group" class="input">
+										<input type="text" class="field_state" name="how_know" id="how_know" placeholder="Others (please specify)" value=""/>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
+							<di<div class="form-group" id="chkLookingDiv">
+								<div class="lable" style="line-height: 18px;"><?=lang('looking_for')?> <span class="required"> *</span></div>
+								<div class="right-group">
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('executive_search')?>"/>
+									<span><?=lang('executive_search')?></span>
+									<div class="clearfix_slim"></div>
+
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_consulting')?>"/>
+									<span><?=lang('hr_consulting')?></span>
+									<div class="clearfix_slim"></div>
+
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('mercer_salary_surveys')?>"/>
+									<span><?=lang('mercer_salary_surveys')?></span>
+									<div class="clearfix_slim"></div>
+
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('payroll_outsourcing')?>"/>
+									<span><?=lang('payroll_outsourcing')?></span>
+									<div class="clearfix_slim"></div>
+
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('hr_services_market')?>"/>
+									<span><?=lang('hr_services_market')?></span>
+									<div class="clearfix_slim"></div>
+
+									<input class="iCheck" type="checkbox" name="chkLooking[]" value="<?=lang('choise_others')?>"/>
+									<span><?=lang('choise_others')?></span>
+									<div style="padding-top:5px;" class="clearfix"></div>
+									<div class="input">
+										<input type="text" class="field_state" name="choise_others_text" id="choise_others_text" placeholder="<?=lang('choise_others')?>"/>
+									</div>
+
+								</div>
+								<div class="clearfix"></div>
+
+								<div class="ab-submit">
+									<div class="item item-status">
+										<p class="ab-submit-status red"></p>
+									</div>
+								</div>
+								<div class="ab-submit">
+									<div class="item">
+										<a class="btn-carrer btn-carrer-create signin f-bb" title="Send" href="javascript:void(0);"><?=lang('send')?></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				  </tr>
+
+
+				</table>
+            </form>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 var lang_click="";
 var link_down="";
